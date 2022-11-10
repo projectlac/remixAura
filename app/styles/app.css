@@ -1,0 +1,19 @@
+*,
+hmtl,
+body {
+  font-family: Roboto;
+  margin: 0;
+  padding: 0;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
