@@ -11,7 +11,6 @@ import logo from "~/assets/images/logo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "@remix-run/react";
 const HeaderWrapper = styled(Box)({
-  marginBottom: "20px",
   paddingBottom: "12px",
   borderBottom: "1px solid #333",
   textAlign: "center",
