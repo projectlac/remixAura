@@ -17,3 +17,16 @@ a {
   text-decoration: none;
   color: #333;
 }
+.container-admin {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: "nav outlet";
+}
+.nav {
+  grid-area: nav;
+}
+.outlet {
+  grid-area: outlet;
+}

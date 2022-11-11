@@ -12,8 +12,8 @@ function ProductList() {
       >
         <Grid container columnSpacing={10}>
           {[...Array(4)].map((d, i) => (
-            <Grid item md={3}>
-              <ProductItem key={i} />
+            <Grid item key={i} md={3}>
+              <ProductItem />
             </Grid>
           ))}
         </Grid>
