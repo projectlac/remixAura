@@ -17,3 +17,36 @@ model User {
   email     String   @unique
   password  String
 }
+
+model Category {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  name      String
+  product   Product[]
+}
+
+model Product {
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  name        String
+  parent      Category      @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  slug        String        @unique
+  image       String
+  typeProduct TypeProduct[]
+  isSold      Boolean
+  soldAt      DateTime?
+  isSale      Boolean
+  salePercent Float
+  description String?
+}
+
+model TypeProduct {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  price         String
+  typeProduct   String
+  parentProduct Product @relation(fields: [productId], references: [id])
+  productId     String
+}

@@ -14,6 +14,7 @@ export default function dashboard() {
       <div className="drawer">
         <Drawer />
       </div>
+      <div className="nav">huhu</div>
       <div className="outlet">
         <Outlet />
       </div>

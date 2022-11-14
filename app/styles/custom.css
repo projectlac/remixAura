@@ -1,0 +1,62 @@
+*,
+hmtl,
+body {
+  font-family: Roboto;
+  margin: 0;
+  padding: 0;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+.container-admin {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 70px 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "drawer nav"
+    "drawer outlet";
+}
+.drawer {
+  grid-area: drawer;
+  background-image: url("../assets/images/astronaut-spacewalk-mixed-media_641298-39.jpg");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+.drawer::after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #000000c9;
+  content: "";
+  top: 0;
+}
+.nav {
+  box-shadow: 1px 1px 5px 1px #ddd;
+  grid-area: nav;
+}
+.outlet {
+  grid-area: outlet;
+  padding: 40px;
+}
+
+.drawer .active {
+  border-radius: 15px;
+  background: #4e4e4e;
+  box-shadow: 0px 0px 5px 1px #3e3e3e;
+}
+.drawer ul li a {
+  width: 100%;
+  display: block;
+}
