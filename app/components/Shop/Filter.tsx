@@ -1,7 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
+import { ICategoryData } from "~/models/category";
 
-function Filter() {
+interface IProps {
+  category: ICategoryData[];
+}
+function Filter({ category }: IProps) {
   return (
     <div>
       <Typography
@@ -25,10 +29,12 @@ function Filter() {
         }}
       >
         <ul>
-          <li>Nến sáp thơm (10)</li>
-          <li>Trầm hương (2)</li>
-          <li>Trầm nụ (3)</li>
-          <li>Tinh dầu thơm (7)</li>
+          {category.length > 0 &&
+            category.map((d) => (
+              <li key={d.id}>
+                {d.name} ({d.productCount})
+              </li>
+            ))}
         </ul>
       </Box>
     </div>
