@@ -30,3 +30,13 @@ export async function addCategory(name: string) {
     throw error;
   }
 }
+
+export async function getCategoryById(id: string) {
+  const category = await prisma.category.findUnique({
+    where: {
+      id: id,
+    },
+  });
+
+  return category;
+}
