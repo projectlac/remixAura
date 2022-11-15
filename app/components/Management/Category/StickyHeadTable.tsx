@@ -11,6 +11,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { ICategoryData } from "~/models/category";
 import { Link } from "@remix-run/react";
+import DialogWarning from "~/components/Common/Dialog/DialogWarning";
 interface Data {
   name: string;
   code: string;
@@ -85,11 +86,17 @@ export default function StickyHeadTable({ data }: IProps) {
                     <TableCell>{page * 10 + i + 1}</TableCell>
                     <TableCell>{row.name}</TableCell>
                     <TableCell>{row.productCount}</TableCell>
-                    <TableCell align="right">
-                      <Link to={`/dashboard/category/edit&id=${row.id}`}>
+                    <TableCell
+                      align="right"
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                      }}
+                    >
+                      <Link to={`/dashboard/category/edit/${row.id}`}>
                         <EditIcon />
                       </Link>
-                      / <DeleteForeverIcon />
+                      / <DialogWarning id={row.id} />
                     </TableCell>
                   </TableRow>
                 );

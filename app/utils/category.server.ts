@@ -40,3 +40,22 @@ export async function getCategoryById(id: string) {
 
   return category;
 }
+
+export async function updateCategoryById(id: string, name: string) {
+  await prisma.category.update({
+    where: {
+      id: id,
+    },
+    data: {
+      name: name,
+    },
+  });
+}
+
+export async function deleteCategory(id: string) {
+  await prisma.category.delete({
+    where: {
+      id: id,
+    },
+  });
+}

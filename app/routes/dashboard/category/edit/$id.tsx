@@ -1,20 +1,65 @@
-import { json, LoaderFunction } from "@remix-run/node";
-import { useLoaderData, useLocation } from "@remix-run/react";
-import React from "react";
-import { getCategoryById } from "~/utils/category.server";
+import { ActionFunction, json, LoaderFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 
+import { makeDomainFunction } from "domain-functions";
+import { z } from "zod";
+import { Form } from "~/components/Common/Form/Form";
+import { formAction } from "~/components/Common/Form/formAction";
+import {
+  addCategory,
+  getCategoryById,
+  updateCategoryById,
+} from "~/utils/category.server";
+
+export const action: ActionFunction = async ({ request }) =>
+  formAction({
+    request,
+    schema,
+    mutation,
+    successPath: "/dashboard/category" /* path to redirect on success */,
+  });
+const schema = z.object({
+  id: z.string(),
+  name: z.string().min(1),
+});
 export const loader: LoaderFunction = async ({ params }) => {
-  console.log("param", params.id);
-  const category = await getCategoryById("63720baee91dd5185f167f8b");
+  const category = await getCategoryById(params.id as string);
+  console.log(category);
+
   return json({ category });
 };
-function edit() {
-  const route = useLocation();
-  let id = route.search.split("=")[1];
-  const { category } = useLoaderData();
-  // console.log(category);
+const mutation = makeDomainFunction(schema)(async (values) => {
+  const { id, name } = values;
+  // console.log(values);
+  // console.log(values);
 
-  return <div>edit</div>;
+  updateCategoryById(id, name);
+});
+
+function add() {
+  const {
+    category: { name, id },
+  } = useLoaderData();
+  console.log(id, name);
+
+  return (
+    <Form
+      schema={schema}
+      values={{
+        id: id,
+        name: name,
+      }}
+    >
+      {({ Field, Errors, Button }) => (
+        <>
+          <Field name="id" label="First name" hidden />
+          <Field name="name" label="First name" />
+          <Errors />
+          <Button />
+        </>
+      )}
+    </Form>
+  );
 }
 
-export default edit;
+export default add;
